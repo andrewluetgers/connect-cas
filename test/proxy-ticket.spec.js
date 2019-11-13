@@ -1,12 +1,11 @@
 var express = require('express');
-var connect = require('connect');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 var cas = require('../');
 var should = require('should');
-var parseUrl = require('url').parse;
 var request = require('request').defaults({strictSSL: false, followRedirect: false});
 var https = require('https');
 var http = require('http');
-var q = require('q');
 var fs = require('fs');
 
 var lastRequest;
@@ -28,10 +27,11 @@ describe('#proxyTicket', function(){
         } else done();
     });
     it('exists', function(){
-        cas.proxyTicket.should.be.a('function');
+        console.log(typeof cas.proxyTicket);
+        cas.proxyTicket.should.be.an.instanceOf(Function);
     });
     it('is a middleware', function(){
-        cas.proxyTicket({targetService: 'atyourservice'}).should.be.a('function');
+        cas.proxyTicket({targetService: 'atyourservice'}).should.be.an.instanceOf(Function);
     });
     it('throws an error when targetService is not specified', function(){
         (function(){cas.proxyTicket()}).should.throw('no target proxy service specified');
@@ -48,7 +48,7 @@ describe('#proxyTicket', function(){
         });
         it('sets req.pt', function(done){
             request.get('https://localhost:3000/asdf', function(err, res, body){
-                should.exist(lastRequest.session.pt);
+                should.exist(lastRequest.session.pt);``
                 should.exist(lastRequest.session.pt['atyourservice']);
                 done();
             });
@@ -106,8 +106,8 @@ var casServerSetup = function(done){
 };
 var serverSetup = function(options, done){
     var app = express()
-    .use(connect.cookieParser())
-    .use(connect.session({
+    .use(cookieParser())
+    .use(session({
         secret: 'ninja cat',
         key: 'sid'
     }))

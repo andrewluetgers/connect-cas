@@ -1,9 +1,9 @@
 var express = require('express');
-var connect = require('connect');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var request = require('request');
 var cas = require('../');
 var http = require('http');
-var should = require('should');
 
 describe('#ssout', function(){
     var server;
@@ -41,8 +41,8 @@ describe('#ssout', function(){
 
 var serverSetup = function(done){
     var app = express()
-    .use(connect.cookieParser())
-    .use(connect.session({
+    .use(cookieParser())
+    .use(session({
         secret: 'ninja cat',
         key: 'sid'
     }))

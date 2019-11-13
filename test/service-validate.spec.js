@@ -1,8 +1,8 @@
 var express = require('express');
-var connect = require('connect');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 var cas = require('../');
 var should = require('should');
-var parseUrl = require('url').parse;
 var request = require('request').defaults({followRedirect: false, strictSSL: false});
 var https = require('https');
 var fs = require('fs');
@@ -233,8 +233,8 @@ var casServerSetup = function(done){
 };
 var serverSetup = function(options, done){
     var app = express()
-    .use(connect.cookieParser())
-    .use(connect.session({
+    .use(cookieParser())
+    .use(session({
         secret: 'ninja cat',
         key: 'sid'
     }))

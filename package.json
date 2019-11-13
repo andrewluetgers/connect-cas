@@ -21,18 +21,20 @@
     "test": "./node_modules/.bin/mocha --reporter list test/*.spec.js"
   },
   "dependencies": {
-    "http-status-codes": "^1.0.5",
-    "lodash": "~2.4.1",
-    "q": "~1.0.0",
-    "request": "~2.81.0",
-    "xml2js": "~0.4.1"
+    "http-status-codes": "^1.4.0",
+    "lodash": "~2.4.2",
+    "q": "~1.5.1",
+    "request": "~2.88.0",
+    "xml2js": "~0.4.22"
   },
   "devDependencies": {
-    "mocha": "~1.9.0",
-    "should": "~1.2.2",
-    "connect": "~2.7.6",
-    "express": "~3.2.0",
-    "connect-redis": "~1.4.5"
+    "connect": "~3.7.0",
+    "connect-redis": "~4.0.3",
+    "cookie-parser": "~1.4.4",
+    "express": "~4.17.1",
+    "express-session": "^1.17.0",
+    "mocha": "~6.2.2",
+    "should": "~13.2.3"
   },
   "bugs": {
     "url": "https://github.com/AceMetrix/connect-cas/issues"

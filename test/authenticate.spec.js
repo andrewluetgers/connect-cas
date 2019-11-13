@@ -9,7 +9,7 @@ describe('#authenticate', function(){
 });
 var serverSetup = function(done){
     var app = express()
-    .use(connect.cookieParser())
+    .use(cookieParser())
     .use(connect.session({
         secret: 'ninja cat',
         key: 'sid'
